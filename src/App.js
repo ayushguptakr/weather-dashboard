@@ -9,6 +9,7 @@ function App() {
   return (
     <WeatherProvider>
       <div className="app-container">
+        <div className="animated-bg"></div>
         <div className="app-content">
           <div className="app-header">
             <h1>Weather Dashboard</h1>
