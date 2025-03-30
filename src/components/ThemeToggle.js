@@ -1,8 +1,7 @@
-// src/components/ThemeToggle.js
 import { useWeather } from '../context/WeatherContext';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
-export const ThemeToggle = () => {
+const ThemeToggle = () => {
   const { theme, toggleTheme } = useWeather();
 
   return (
@@ -15,3 +14,5 @@ export const ThemeToggle = () => {
     </button>
   );
 };
+
+export default ThemeToggle;

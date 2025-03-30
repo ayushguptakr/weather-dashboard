@@ -234,22 +234,87 @@
   background-color: rgba(0, 0, 0, 0.05);
 }
 
+/* Forecast Styles */
+.forecast-container {
+  margin-top: 2rem;
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.forecast-cards {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+.forecast-card {
+  min-width: 100px;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: var(--border-radius);
+  flex-shrink: 0;
+}
+
+.forecast-card img {
+  width: 50px;
+  height: 50px;
+  margin: 0.5rem 0;
+}
+
 /* Theme Toggle */
 .theme-toggle {
   background: none;
   border: none;
   color: var(--text-color);
-  font-size: 1.2rem;
   cursor: pointer;
-  padding: 5px;
+  padding: 0.5rem;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .theme-toggle:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Weather Card Styling */
+.weather-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  transition: transform 0.3s ease;
+}
+
+.weather-card:hover {
+  transform: translateY(-5px);
+}
+
+.weather-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.temperature {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: var(--primary-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.weather-card, .forecast-container {
+  animation: fadeIn 0.5s ease-out;
 }

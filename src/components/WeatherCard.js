@@ -1,6 +1,7 @@
 import { useWeather } from '../context/WeatherContext';
+import { WiHumidity, WiStrongWind } from 'react-icons/wi';
 
-export const WeatherCard = () => {
+const WeatherCard = () => {
   const { weatherData, loading, error } = useWeather();
 
   if (loading) {
@@ -51,14 +52,16 @@ export const WeatherCard = () => {
       
       <div className="weather-details">
         <div className="detail-item">
-          <p>Humidity</p>
+          <WiHumidity size={24} />
           <p>{weatherData.main.humidity}%</p>
         </div>
         <div className="detail-item">
-          <p>Wind Speed</p>
+          <WiStrongWind size={24} />
           <p>{weatherData.wind.speed} km/h</p>
         </div>
       </div>
     </div>
   );
 };
+
+export default WeatherCard;

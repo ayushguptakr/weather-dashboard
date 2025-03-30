@@ -1,8 +1,8 @@
 import { WeatherProvider } from './context/WeatherContext';
-import { SearchBar } from './components/SearchBar';
-import { WeatherCard } from './components/WeatherCard';
-import { SearchHistory } from './components/SearchHistory';
-import { ThemeToggle } from './components/ThemeToggle';
+import SearchBar from './components/SearchBar';
+import WeatherCard from './components/WeatherCard';
+import Forecast from './components/Forecast';
+import ThemeToggle from './components/ThemeToggle';
 import './App.css';
 
 function App() {
@@ -16,15 +16,8 @@ function App() {
           </div>
           
           <SearchBar />
-          <div className="weather-container">
-            <div className="main-weather">
-              <WeatherCard />
-            </div>
-            <div className="sidebar">
-              <SearchHistory />
-              {/* Bonus: Add Forecast component here */}
-            </div>
-          </div>
+          <WeatherCard />
+          <Forecast />
         </div>
       </div>
     </WeatherProvider>
