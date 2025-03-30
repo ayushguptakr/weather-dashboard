@@ -52,7 +52,7 @@ const WeatherCard = () => {
   return (
     <div className={`weather-card ${getWeatherClass(weatherData.weather[0].main)}`}>
       <div className="weather-header">
-        <div>
+        <div className="location-info">
           <h2>
             {weatherData.name}, {weatherData.sys.country}
           </h2>
@@ -65,21 +65,23 @@ const WeatherCard = () => {
             })}
           </p>
         </div>
-        <div className="weather-icon-container">
-          {getWeatherIcon(weatherData.weather[0].main)}
-          <img
-            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
-            alt={weatherData.weather[0].description}
-            className="weather-icon"
-          />
+        <div className="weather-icon-wrapper">
+          <div className="weather-icon-container">
+            {getWeatherIcon(weatherData.weather[0].main)}
+            <img
+              src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+              alt={weatherData.weather[0].description}
+              className="weather-icon"
+            />
+          </div>
         </div>
       </div>
       
       <div className="weather-main">
-        <div className="temperature-container">
-          <p className="temperature">
+        <div className="temperature-display">
+          <span className="temperature-value">
             {Math.round(weatherData.main.temp)}
-          </p>
+          </span>
           <span className="temperature-unit">°C</span>
         </div>
         <p className="weather-description">
@@ -113,16 +115,6 @@ const WeatherCard = () => {
           <div>
             <p className="detail-label">Feels Like</p>
             <p className="detail-value">{Math.round(weatherData.main.feels_like)}°C</p>
-          </div>
-        </div>
-        
-        <div className="detail-item">
-          <div className="detail-icon">
-            {weatherData.visibility > 5000 ? '👁️' : '🌫️'}
-          </div>
-          <div>
-            <p className="detail-label">Visibility</p>
-            <p className="detail-value">{(weatherData.visibility / 1000).toFixed(1)} km</p>
           </div>
         </div>
       </div>

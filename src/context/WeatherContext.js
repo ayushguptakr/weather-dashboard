@@ -8,11 +8,15 @@ export const WeatherProvider = ({ children }) => {
   const [forecastData, setForecastData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [searchHistory, setSearchHistory] = useState(() => {
+    const saved = localStorage.getItem('searchHistory');
+    return saved ? JSON.parse(saved) : [];
+  });
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'light';
   });
 
-  // Apply theme to HTML root
+  // Apply theme and save to localStorage
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
@@ -26,6 +30,17 @@ export const WeatherProvider = ({ children }) => {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}&units=metric`
       );
       setWeatherData(response.data);
+      
+      // Update search history
+      setSearchHistory(prev => {
+        const newHistory = [
+          city,
+          ...prev.filter(item => item.toLowerCase() !== city.toLowerCase())
+        ].slice(0, 5);
+        localStorage.setItem('searchHistory', JSON.stringify(newHistory));
+        return newHistory;
+      });
+      
       await fetchForecast(response.data.coord.lat, response.data.coord.lon);
     } catch (err) {
       setError(err.response?.data?.message || 'City not found');
@@ -56,6 +71,7 @@ export const WeatherProvider = ({ children }) => {
         forecastData,
         loading,
         error,
+        searchHistory,
         theme,
         fetchWeather,
         toggleTheme

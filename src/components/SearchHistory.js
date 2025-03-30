@@ -1,6 +1,6 @@
 import { useWeather } from '../context/WeatherContext';
 
-export const SearchHistory = () => {
+const SearchHistory = () => {
   const { searchHistory, fetchWeather } = useWeather();
 
   if (searchHistory.length === 0) return null;
@@ -8,18 +8,19 @@ export const SearchHistory = () => {
   return (
     <div className="search-history">
       <h3>Recent Searches</h3>
-      <ul>
+      <div className="history-items">
         {searchHistory.map((city, index) => (
-          <li key={index}>
-            <button
-              onClick={() => fetchWeather(city)}
-              className="history-item"
-            >
-              {city}
-            </button>
-          </li>
+          <button
+            key={`${city}-${index}`}
+            onClick={() => fetchWeather(city)}
+            className="history-item"
+          >
+            {city}
+          </button>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
+
+export default SearchHistory;
