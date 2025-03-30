@@ -1,5 +1,5 @@
 import { WeatherProvider } from './context/WeatherContext';
-import SearchBar from './components/SearchBar';
+import { SearchBar } from './components/SearchBar';
 import WeatherCard from './components/WeatherCard';
 import Forecast from './components/Forecast';
 import ThemeToggle from './components/ThemeToggle';
